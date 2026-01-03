@@ -33,6 +33,17 @@ void gyro_test_loop()
         Serial.print(",");
         Serial.print(myIMU.getGyroY(), 2);
         Serial.print(",");
-        Serial.println(myIMU.getGyroZ());
+        Serial.println(myIMU.getGyroZ(), 2);
+
+        Serial.print("AccX: ");
+        Serial.print(myIMU.getAccelX(), 2);
+        Serial.print(",");
+        Serial.print("AccY: ");
+
+        Serial.print(myIMU.getAccelY(), 2);
+        Serial.print(",");
+        
+        Serial.print("AccZ: ");
+        Serial.println(myIMU.getAccelZ(), 2);
     }
 }

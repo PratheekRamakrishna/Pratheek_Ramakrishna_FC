@@ -23,23 +23,29 @@ bool BNO085Accel::init()
 
     // SparkFun: timeBetweenReports is in milliseconds
     // 10 ms -> 100 Hz
-    imu.enableAccelerometer(10);
+    imu.enableAccelerometer(50);
 
     return true;
 }
 
 bool BNO085Accel::read()
 {
-    // SparkFun updates internal sensor values when new data arrives
+    // Return false if no new sample is available yet
     if (!imu.dataAvailable())
         return false;
 
-    // SparkFun accel outputs m/s^2 (already converted from Q format)
-    acc = Vector<3>(
-        (double)imu.getAccelX(),
-        (double)imu.getAccelY(),
-        (double)imu.getAccelZ()
-    );
+    // SparkFun accel outputs m/s^2
+    double x = imu.getAccelX();
+    double y = imu.getAccelY();
+    double z = imu.getAccelZ();
+
+    acc = Vector<3>(x, y, z);
+
+    // Optional debug print (with separators)
+    Serial.print(x, 6); Serial.print(",");
+    Serial.print(y, 6); Serial.print(",");
+    Serial.println(z, 6);
 
     return true;
 }
+

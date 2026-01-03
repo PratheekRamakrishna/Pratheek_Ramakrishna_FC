@@ -10,7 +10,7 @@ using namespace astra_rocket;
 
 // Pick the correct BNO085 I2C addr for YOUR board:
 // Common: 0x4A (default), sometimes 0x4B
-static constexpr uint8_t BNO085_ADDR = 0x4A;
+static constexpr uint8_t BNO085_ADDR = 0x4B;
 
 // LPS22HH typical I2C addrs depend on SA0; library defines LPS22HH_I2C_ADD_H / _L.
 // Most boards use one of those (often 0x5D or 0x5C depending on the defines).
@@ -26,7 +26,8 @@ AstraRocketConfig config = AstraRocketConfig()
     .withSensorStatusLEDPin(32)
     .withGPSStatusLEDPin(31)
     .withFlightLogRate(5)
-    .withPreflightLogRate(5);
+    .withPreflightLogRate(5)
+    .withRadioSerial(Serial1);
 
 AstraRocket rocket(config);
 
@@ -45,3 +46,39 @@ void loop()
 {
   rocket.update();
 }
+
+
+/*#include <Arduino.h>
+
+void accel_test_init();
+void accel_test_loop();
+
+void setup()
+{
+    Serial.begin(115200);
+    while (!Serial);
+
+    accel_test_init();
+}
+
+void loop()
+{
+    accel_test_loop();
+}*/
+/*
+#include <Arduino.h>
+#include "gyro_test.h"
+
+void setup()
+{
+    Serial.begin(115200);
+    while (!Serial);
+
+    gyro_test_init();
+}
+
+void loop()
+{
+    gyro_test_loop();
+}
+*/

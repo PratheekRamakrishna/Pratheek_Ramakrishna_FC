@@ -24,6 +24,9 @@ bool BNO085Accel::init()
     // SparkFun: timeBetweenReports is in milliseconds
     // 10 ms -> 100 Hz
     imu.enableAccelerometer(50);
+    imu.enableGyro(50);
+    imu.enableMagnetometer(50);
+
 
     return true;
 }
@@ -40,11 +43,6 @@ bool BNO085Accel::read()
     double z = imu.getAccelZ();
 
     acc = Vector<3>(x, y, z);
-
-    // Optional debug print (with separators)
-    Serial.print(x, 6); Serial.print(",");
-    Serial.print(y, 6); Serial.print(",");
-    Serial.println(z, 6);
 
     return true;
 }

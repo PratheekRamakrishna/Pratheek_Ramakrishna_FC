@@ -24,6 +24,8 @@ bool BNO085Mag::init()
     // SparkFun: enable magnetometer
     // timeBetweenReports is in milliseconds
     // 10 ms -> 100 Hz
+    imu.enableAccelerometer(50);
+    imu.enableGyro(50);
     imu.enableMagnetometer(50);
 
     return true;

@@ -24,7 +24,9 @@ bool BNO085Gyro::init()
     // SparkFun gyro enable
     // timeBetweenReports is in milliseconds
     // 10 ms => 100 Hz
+    imu.enableAccelerometer(50);
     imu.enableGyro(50);
+    imu.enableMagnetometer(50);
 
     return true;
 }
@@ -36,9 +38,9 @@ bool BNO085Gyro::read()
         return false;
 
     // SparkFun gyro outputs rad/s (library converts from Q format)
-    Serial.println((double)imu.getGyroX());
+    /*Serial.println((double)imu.getGyroX());
     Serial.println((double)imu.getGyroY());
-    Serial.println((double)imu.getGyroZ());
+    Serial.println((double)imu.getGyroZ());*/
     angVel = Vector<3>(
         (double)imu.getGyroX(),
         (double)imu.getGyroY(),
